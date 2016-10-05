@@ -1,23 +1,27 @@
 # import sys
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.misc import derivative
 
-# def main():
 d = 2  # distance between song meters (m)
 c = 343.2  # speed of sound (m/s)
-a = d/c  # time taken between posts
+tMax = d/c  # Max time taken between posts. Time equals distance divided by speed.
 
-degs = np.linspace(0, 2*np.pi, 181)  # create x axis array of degrees
+degs = np.linspace(0, np.pi, 181)  # create array of radians from 0 to pi(180 degrees), 181 points, 1 per degree
 
-DegToRad = np.pi/180
-deg = 45*DegToRad
+DegToRad = np.pi/180  # create metric to convert degrees to radians
 
-TOAdiff = np.cos(degs)
 
-ang = np.arccos(1)
+def toadiff(x):
+    return np.cos(x)  # calculate the time of arrival difference
 
-print(degs)
-print(TOAdiff)
 
-plt.plot(TOAdiff)
+# Calculate Change in TOADiff over angle
+dyTOADiff = abs(derivative(toadiff, degs, dx=1e-10))
+
+
+print(toadiff(degs), " = TOADiff")
+print(dyTOADiff, " = dyTOADiff")
+plt.plot(abs(toadiff(degs)))
+plt.plot(dyTOADiff)
 plt.show()
