@@ -3,10 +3,7 @@ import numpy as np
 from sympy import *
 from scipy.misc import derivative
 
-<<<<<<< HEAD
-# def main():
-d = 1  # distance between song meters (m)
-=======
+
 d = 2  # distance between song meters (m)
 >>>>>>> origin/master
 c = 343.2  # speed of sound (m/s)
